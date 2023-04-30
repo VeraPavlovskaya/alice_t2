@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-# import requests
 import logging
 import os
 from geo import get_geo_info

@@ -1,4 +1,3 @@
-import math
 import requests
 
 apikey = "40d1649f-0493-4b70-98ba-98533de7710b"
@@ -14,12 +13,12 @@ def get_geo_info(city_name):
 
         }
         data = requests.get(url, params).json()
-        coordinates_str = data['response']['GeoObjectCollection'][
+        coords_string = data['response']['GeoObjectCollection'][
             'featureMember'][0]['GeoObject']['Point']['pos']
-        long, lat = map(float, coordinates_str.split())
+        coords, crd = map(float, coords_string.split())
         country_name = data['response']['GeoObjectCollection']['featureMember'][0][
             'GeoObject']['metaDataProperty']['GeocoderMetaData'][
             'AddressDetails']['Country']['CountryName']
-        return f"Страна - {country_name}, координаты - {long}, {lat}"
+        return f"Страна - {country_name}, координаты - {coords}, {crd}"
     except Exception as excep:
         return excep
